@@ -1,7 +1,8 @@
 {
   "name": "react-barb",
   "version": "1.0.0",
-  "description": "",
+  "description": "BARB is Another React Boilerplate",
+  "homepage": "http://github.com/jefferey/react-barb",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
