@@ -1,10 +1,10 @@
 import React from 'react';
 
 const InfoDisplay = (props) => {
-  let last = props.people.length - 1;
-  let people = props.people.map((person, index) => {
+  const last = props.people.length - 1;
+  const people = props.people.map((person, index) => {
     return (
-      <span key={'person_' + index}>{ person + (index === last ? '' : index === last - 1 ? ' and ' : ', ') }</span>
+      <span key={`person_ + ${index}`}>{ person + (index === last ? '' : index === last - 1 ? ' and ' : ', ') }</span>
     );
   });
 
@@ -17,12 +17,12 @@ const InfoDisplay = (props) => {
 
 InfoDisplay.propTypes = {
   location: React.PropTypes.string,
-  people: React.PropTypes.array
-}
+  people: React.PropTypes.arrayOf(React.PropTypes.string)
+};
 
 InfoDisplay.defaultProps = {
   location: '',
   people: []
-}
+};
 
 export default InfoDisplay;

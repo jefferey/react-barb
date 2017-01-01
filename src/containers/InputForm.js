@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { setLocation } from '../actions/locationActions'
-import { addPerson, removePerson } from '../actions/peopleActions'
+import { connect } from 'react-redux';
+import { setLocation } from '../actions/locationActions';
+import { addPerson, removePerson } from '../actions/peopleActions';
 
 const PEOPLE_OPTIONS = [ 'Alice', 'Bob', 'Chris', 'Doug', 'Eugene', 'Fred' ];
 
@@ -27,12 +27,10 @@ class InputForm extends React.Component {
   }
 
   render() {
-    let peopleChecks = PEOPLE_OPTIONS.map(person => {
+    const peopleChecks = PEOPLE_OPTIONS.map(person => {
       return (
-        <div key={"label-" + person}>
-          <label>
-            <input type="checkbox" value={person} onChange={this.onPersonChanged} checked={this.props.people.indexOf(person) !== -1} /> {person}
-          </label>
+        <div key={`label-${person}`}>
+          <input type="checkbox" value={person} onChange={this.onPersonChanged} checked={this.props.people.indexOf(person) !== -1} /> {person}
         </div>
       );
     });
@@ -41,11 +39,11 @@ class InputForm extends React.Component {
       <div>
         <label htmlFor="location_select">Location:</label>
         <select id="location_select" onChange={this.onLocationChanged}>
-          <option></option>
-          <option>Japan</option>
-          <option>Iceland</option>
-          <option>the Moon</option>
-          <option>Mars</option>
+          <option selected={!this.props.location} />
+          <option selected={this.props.location === 'Japan'}>Japan</option>
+          <option selected={this.props.location === 'Iceland'}>Iceland</option>
+          <option selected={this.props.location === 'the Moon'}>the Moon</option>
+          <option selected={this.props.location === 'Mars'}>Mars</option>
         </select>
         <br />
         <br />
@@ -58,15 +56,18 @@ class InputForm extends React.Component {
 
 InputForm.propTypes = {
   location: React.PropTypes.string.isRequired,
-  people: React.PropTypes.array.isRequired
-}
+  people: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  addPerson: React.PropTypes.func,
+  removePerson: React.PropTypes.func,
+  setLocation: React.PropTypes.func
+};
 
 const mapStateToProps = (state) => {
   return {
     location: state.location,
-  	people: state.people
-  }
-}
+    people: state.people
+  };
+};
 
 export default connect(
   mapStateToProps,
@@ -75,4 +76,4 @@ export default connect(
     addPerson,
     removePerson
   }
-)(InputForm)
+)(InputForm);

@@ -10,4 +10,8 @@ const App = (props) => {
   );
 };
 
-export default App
+App.propTypes = {
+  children: React.PropTypes.element
+};
+
+export default App;

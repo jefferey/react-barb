@@ -14,6 +14,13 @@ module.exports = {
     failOnError: false
   },
 	module: {
+    preLoaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint'
+      }
+    ],
 		loaders: [
 			{
 				test: /\.js$/,

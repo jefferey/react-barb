@@ -1,34 +1,28 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import InfoDisplay from '../components/InfoDisplay'
-import InputForm from './InputForm'
+import { connect } from 'react-redux';
+import InfoDisplay from '../components/InfoDisplay';
+import InputForm from './InputForm';
 
-class MainView extends React.Component {
-  constructor(props, context) {
-		super(props, context);
-	}
-
-  render() {
-    return (
-      <div>
-        <InfoDisplay location={this.props.location} people={this.props.people} />
-        <br />
-        <InputForm />
-      </div>
-    );
-  }
-}
+const MainView = (props) => {
+  return (
+    <div>
+      <InfoDisplay location={props.location} people={props.people} />
+      <br />
+      <InputForm />
+    </div>
+  );
+};
 
 MainView.propTypes = {
   location: React.PropTypes.string.isRequired,
-  people: React.PropTypes.array.isRequired
-}
+  people: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+};
 
 const mapStateToProps = (state) => {
   return {
     location: state.location,
-  	people: state.people
-  }
-}
+    people: state.people
+  };
+};
 
-export default connect(mapStateToProps)(MainView)
+export default connect(mapStateToProps)(MainView);
